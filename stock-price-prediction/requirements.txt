@@ -1,0 +1,6 @@
+requests 
+pandas 
+pyscopg2-binary 
+smtplib
+schedule
+pytest
