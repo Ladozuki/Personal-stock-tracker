@@ -1,6 +1,5 @@
 requests 
 pandas 
-pyscopg2-binary 
-smtplib
 schedule
-pytest
+yfinance 
+#psycopg2-binary
