@@ -3,7 +3,6 @@ from email_validator import validate_email, EmailNotValidError
 from email.message import EmailMessage
 import pandas as pd
 import psycopg2
-from prettytable import PrettyTable
 from datetime import datetime, timedelta
 from sqlalchemy import create_engine
 
@@ -24,7 +23,7 @@ def fetch_stock_data(db_config: dict) -> pd.DataFrame:
      #   conn.close()
 
     except Exception as e:
-        print(f"Failed to fet data: {e}")
+        print(f"Failed to fetch data: {e}")
 
         return pd.DataFrame() #returns empty dataframe on failure
     return df
@@ -61,7 +60,7 @@ def generate_table(df: pd.DataFrame) -> str:
     """
     
     # Add rows to HTML table
-    for _, row in df.iterrows():
+    for index, row in df.iterrows():
         html += f"""
         <tr>
             <td>{row['symbol']}</td>
