@@ -3,3 +3,6 @@ pandas
 schedule
 yfinance 
 #psycopg2-binary
+email-validator
+PrettyTable
+sqlalchamy

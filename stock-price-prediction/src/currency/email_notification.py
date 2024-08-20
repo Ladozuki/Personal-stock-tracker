@@ -8,14 +8,23 @@ import pandas as pd
 def fetch_currency_data(db_config: dict) -> pd.DataFrame:
 
     try: 
-
+        # Creating the connection string for the PostgreSQL database
         connection_string = f"postgresql://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['dbname']}"
 
+        #Creating the SQLAlchelmy engine
         engine = create_engine(connection_string)
-    
-    #    conn = psycopg2.connect(**db_config)
-        df = pd.read_sql_query('SELECT symbol AS pair, date, open, high, low FROM currency_prices', engine)
+        
+        query = """
+        SELECT symbol AS pair, date, open, high, low, close 
+        FROM currency_prices 
+        WHERE symbol = 'USDNGN=X' OR symbol = 'GBPNGN=X'
+        """
 
+        # Executing the query and loading the result into a pandas DataFrame
+    #    conn = psycopg2.connect(**db_config)
+        df = pd.read_sql_query(query, engine)
+
+        #Disposing of the engine connection
         engine.dispose()
      
      #   conn.close()
